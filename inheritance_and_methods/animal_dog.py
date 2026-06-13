@@ -67,3 +67,44 @@ Rex is a Beagle
 =================================================
 
 """
+
+class Animal:
+    def __init__(self, name, sound):
+        self.name = name
+        self.sound = sound
+
+    def speak(self):
+        print(f"{self.name} says {self.sound}")
+
+
+class Dog(Animal):
+    def __init__(self, name, breed):
+        super().__init__(name, "Woof")
+        self.breed = breed
+
+    def describe(self):
+        print(f"{self.name} is a {self.breed}")
+
+
+animal_name = input("Enter animal name: ")
+animal_sound = input("Enter animal sound: ")
+a = Animal(animal_name, animal_sound)
+
+
+dog1_name = input("Enter first dog name: ")
+dog1_breed = input("Enter first dog breed: ")
+d1 = Dog(dog1_name, dog1_breed)
+
+# User input for Dog 2
+dog2_name = input("Enter second dog name: ")
+dog2_breed = input("Enter second dog breed: ")
+d2 = Dog(dog2_name, dog2_breed)
+
+
+a.speak()
+
+d1.speak()
+d1.describe()
+
+d2.speak()
+d2.describe()

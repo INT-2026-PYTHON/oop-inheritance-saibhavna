@@ -96,3 +96,60 @@ is_valid_salary("abc")  -> False
 =================================================
 
 """
+
+class Employee:
+    company = "Acme Corp"
+    raise_pct = 5
+
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    
+    def apply_raise(self):
+        self.salary += self.salary * Employee.raise_pct / 100
+
+  
+    @classmethod
+    def set_raise_percentage(cls, new_pct):
+        cls.raise_pct = new_pct
+
+    @classmethod
+    def from_string(cls, emp_str):
+        name, salary = emp_str.split(",")
+        return cls(name, float(salary))
+
+    
+    @staticmethod
+    def is_valid_salary(value):
+        return isinstance(value, (int, float)) and value > 0
+
+
+name1 = input("Enter Employee 1 Name: ")
+salary1 = float(input("Enter Employee 1 Salary: "))
+e1 = Employee(name1, salary1)
+
+name2 = input("Enter Employee 2 Name: ")
+salary2 = float(input("Enter Employee 2 Salary: "))
+e2 = Employee(name2, salary2)
+
+emp_str = input("Enter Employee 3 as Name,Salary: ")
+e3 = Employee.from_string(emp_str)
+
+e1.apply_raise()
+
+
+new_pct = float(input("Enter new raise percentage: "))
+Employee.set_raise_percentage(new_pct)
+
+e2.apply_raise()
+e3.apply_raise()
+
+print(f"{e1.name} -> {e1.salary}")
+print(f"{e2.name} -> {e2.salary}")
+print(f"{e3.name} -> {e3.salary}")
+
+# Static method testing
+print(f"is_valid_salary(50000) -> {Employee.is_valid_salary(50000)}")
+print(f"is_valid_salary(-100) -> {Employee.is_valid_salary(-100)}")
+print(f'is_valid_salary("abc") -> {Employee.is_valid_salary("abc")}')
